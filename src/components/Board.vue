@@ -17,7 +17,7 @@
 <script>
   import { ref, computed } from 'vue';
 
-  const calculateWinner = squares => {
+  const calculateWinner = (squares) => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -45,13 +45,14 @@
         ['', '', ''],
         ['', '', '']
       ])
-
-      const winner = computed(() => calculateWinner(squares.value.flat()))
+      const winner = ref(null)
 
       const move = (x, y) => {
         if (winner.value) return
+        if (squares.value[x][y] != '') return
         squares.value[x][y] = player.value
         player.value = player.value === 'O' ? 'X' : 'O'
+        winner.value = calculateWinner(squares.value.flat())
       }
 
       const reset = () => {
@@ -61,6 +62,7 @@
           ['', '', ''],
           ['', '', '']
         ]
+        winner.value = null
       }
 
       return { winner, player, squares, move, reset }
