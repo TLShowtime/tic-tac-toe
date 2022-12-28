@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app app-blue">
     <Board/>
   </div>
 </template>
@@ -12,3 +12,12 @@
     components: { Board }
   }
 </script>
+
+<style>
+  .app {
+    @apply grid h-screen place-items-center
+  }
+  .app-blue {
+    @apply bg-blue-200
+  }
+</style>
