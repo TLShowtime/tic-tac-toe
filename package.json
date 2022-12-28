@@ -19,6 +19,8 @@
     "not ie <= 8"
   ],
   "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.13",
     "babel-core": "^6.26.3",
     "babel-loader": "^9.1.0",
     "babel-preset-env": "^1.7.0",
@@ -26,7 +28,8 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "file-loader": "^6.2.0",
-    "@vitejs/plugin-vue": "^4.0.0",
+    "postcss": "^8.4.20",
+    "tailwindcss": "^3.2.4",
     "vite": "^4.0.0",
     "vitest": "^0.26.2",
     "vue-loader": "^17.0.1",
