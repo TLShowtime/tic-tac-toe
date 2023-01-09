@@ -10,41 +10,36 @@
       </button>
     </div>
   </div>
-  <button class="btn btn-purple" @click="reset">
+  <button class="font-bold text-3xl py-6 px-12 rounded btn-purple" @click="reset">
     Reset
   </button>
 </template>
 
 <script>
   import { ref, computed } from 'vue';
-  import { calculateWinner } from '../functions/BoardFunctions';
+  import { Game } from '../functions/Board';
 
   export default {
     setup() {
-      const player = ref('X')
-      const squares = ref([
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', '']
-      ])
-      const winner = ref(null)
+      const gameboard = ref(new Game())
+      const player = ref(gameboard.value.player)
+      const squares = ref(gameboard.value.board)
+      const winner = ref(gameboard.value.winner)
 
       const move = (x, y) => {
-        if (winner.value) return
-        if (squares.value[x][y] != '') return
-        squares.value[x][y] = player.value
-        player.value = player.value === 'O' ? 'X' : 'O'
-        winner.value = calculateWinner(squares.value.flat())
+        gameboard.value.move(x, y)
+        winner.value = gameboard.value.winner
+
+        player.value = gameboard.value.player
+        squares.value = gameboard.value.board
       }
 
       const reset = () => {
-        player.value = 'X'
-        squares.value = [
-          ['', '', ''],
-          ['', '', ''],
-          ['', '', '']
-        ]
-        winner.value = null
+        gameboard.value = new Game()
+
+        winner.value = gameboard.value.winner
+        squares.value = gameboard.value.board
+        player.value = gameboard.value.player
       }
 
       return { winner, player, squares, move, reset }
@@ -53,9 +48,6 @@
 </script>
 
 <style>
-  .btn {
-    @apply font-bold text-3xl py-6 px-12 rounded;
-  }
   .btn-purple {
     @apply bg-purple-600 text-white;
   }

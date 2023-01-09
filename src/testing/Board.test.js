@@ -1,30 +1,47 @@
 import { test, expect } from 'vitest'
-import { calculateWinner } from '../functions/BoardFunctions'
+import { Game } from '../functions/Board'
 
 describe('calculateWinner', () => {
 
-  test ('not winning in empty board', () => {
-    expect(calculateWinner(
-      ['', '', '',
-       '', '', '',
-       '', '', '']
-      )).toEqual(null)
+  test ('make valid moves in board', () => {
+    let gameBoard = new Game()
+    gameBoard.move(0, 0)
+    gameBoard.move(2, 1)
+    expect(gameBoard.board).toEqual([
+      ['X', '', ''],
+      ['', '', ''],
+      ['', 'O', '']
+    ])
   })
 
-  test ('not winning in incomplete board', () => {
-    expect(calculateWinner([
-      '', 'O', '',
-      'X', 'O', '',
-      'X', 'X', 'O'
-    ])).toEqual(null)
+  test ('do not make invalid moves in board', () => {
+    let gameBoard = new Game()
+    gameBoard.move(0, 0)
+    gameBoard.move(2, 1)
+    expect(gameBoard.board).toEqual([
+      ['X', '', ''],
+      ['', '', ''],
+      ['', 'O', '']
+    ])
   })
 
-  test ('winning in board', () => {
-    expect(calculateWinner([
-      'X', 'O', '',
-      'X', 'O', '',
-      'X', 'X', 'O'
-    ])).toEqual('X')
+  test ('nobody wins in incomplete board', () => {
+    let gameBoard = new Game()
+    gameBoard.move(0, 0)
+    gameBoard.move(2, 1)
+    gameBoard.calculateWinner()
+    expect(gameBoard.winner).toEqual(null)
+  })
+
+  test ('X wins in incomplete board', () => {
+    let gameBoard = new Game()
+    gameBoard.move(0, 0)
+    gameBoard.move(0, 1)
+    gameBoard.move(1, 0)
+    gameBoard.move(0, 2)
+    gameBoard.move(2, 0)
+    gameBoard.calculateWinner()
+    expect(gameBoard.winner).toEqual('X')
   })
 
 })
