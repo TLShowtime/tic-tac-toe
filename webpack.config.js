@@ -1,3 +1,6 @@
+/* eslint-env node */
+/* eslint @typescript-eslint/no-var-requires: "off" */
+
 var path = require('path')
 var webpack = require('webpack')
 
