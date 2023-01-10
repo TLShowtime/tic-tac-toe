@@ -24,11 +24,11 @@ export class Game {
   }
 
   calculateWinner() {
-    const flat_board = this.board.flat()
+    const flatBoard = this.board.flat()
     this.winning_lines.forEach(line => {
       const [a, b, c] = line
-      if (flat_board[a] && flat_board[a] === flat_board[b] && flat_board[a] === flat_board[c]) {
-        this.winner = flat_board[a]
+      if (flatBoard[a] && flatBoard[a] === flatBoard[b] && flatBoard[a] === flatBoard[c]) {
+        this.winner = flatBoard[a]
       }
     })
   }
