@@ -1,3 +1,5 @@
+/* globals describe */
+
 import { test, expect } from 'vitest'
 import { Game } from '../functions/Board'
 

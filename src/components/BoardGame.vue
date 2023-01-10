@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { ref, computed } from 'vue';
+  import { ref } from 'vue';
   import { Game } from '../functions/Board';
 
   export default {

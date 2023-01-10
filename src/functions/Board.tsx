@@ -1,8 +1,8 @@
 export class Game {
   winner: string | null = null
   board: string[][] = [['', '', ''],['', '', ''],['', '', '']]
-  player: string = 'X'
-  winning_lines: number[][] = [
+  player = 'X'
+  winningLines: number[][] = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -19,7 +19,7 @@ export class Game {
 
   calculateWinner() {
     const flatBoard = this.board.flat()
-    this.winning_lines.forEach(line => {
+    this.winningLines.forEach(line => {
       const [a, b, c] = line
       if (flatBoard[a] && flatBoard[a] === flatBoard[b] && flatBoard[a] === flatBoard[c]) {
         this.winner = flatBoard[a]
